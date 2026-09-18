@@ -1,0 +1,258 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  rofi config — illogical-impulse style                     ║
+   ║  Theme  : Catppuccin Mocha                                 ║
+   ║  Font   : JetBrains Mono 10                                ║
+   ║  Style  : Square corners · frosted blur                    ║
+   ║  Place  : ~/.config/rofi/config.rasi                       ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+configuration {
+    modi:                   "drun,run,window,filebrowser";
+    show-icons:             true;
+    icon-theme:             "Papirus-Dark";
+    display-drun:           " Apps";
+    display-run:            " Run";
+    display-window:         " Windows";
+    display-filebrowser:    " Files";
+    drun-display-format:    "{name}";
+    window-format:          "{w}  {c}  {t}";
+    font:                   "JetBrains Mono 10";
+    scroll-method:          0;
+    disable-history:        false;
+    sidebar-mode:           true;
+    hover-select:           true;
+    me-select-entry:        "";
+    me-accept-entry:        "MousePrimary";
+    kb-cancel:              "Escape,Super+space";
+}
+
+/* ── Catppuccin Mocha palette ───────────────────────────── */
+* {
+    base:       #1e1e2eff;
+    mantle:     #181825ff;
+    crust:      #11111bff;
+    surface0:   #313244ff;
+    surface1:   #45475aff;
+    surface2:   #585b70ff;
+    overlay0:   #6c7086ff;
+    overlay1:   #7f849cff;
+    overlay2:   #9399b2ff;
+    subtext0:   #a6adc8ff;
+    subtext1:   #bac2deff;
+    text:       #cdd6f4ff;
+
+    rosewater:  #f5e0dcff;
+    flamingo:   #f2cdcdff;
+    pink:       #f5c2e7ff;
+    mauve:      #cba6f7ff;
+    red:        #f38ba8ff;
+    maroon:     #eba0acff;
+    peach:      #fab387ff;
+    yellow:     #f9e2afff;
+    green:      #a6e3a1ff;
+    teal:       #94e2d5ff;
+    sky:        #89dcebff;
+    sapphire:   #74c7ecff;
+    blue:       #89b4faff;
+    lavender:   #b4befeff;
+
+    transparent: #00000000;
+
+    /* semantic aliases */
+    bg-col:         @base;
+    bg-col-light:   @surface0;
+    border-col:     @surface1;
+    selected-col:   @surface0;
+    blue-col:       @blue;
+    fg-col:         @text;
+    fg-col2:        @subtext0;
+    urgent-col:     @red;
+}
+
+/* ── Window ─────────────────────────────────────────────── */
+window {
+    transparency:           "real";
+    location:               center;
+    anchor:                 center;
+    fullscreen:             false;
+    width:                  520px;
+    x-offset:               0px;
+    y-offset:               0px;
+
+    border:                 2px solid;
+    border-color:           @border-col;
+    border-radius:          0px;        /* square corners */
+
+    background-color:       @bg-col;
+    cursor:                 "default";
+    padding:                0px;
+}
+
+/* ── Mainbox ────────────────────────────────────────────── */
+mainbox {
+    background-color:   @transparent;
+    border:             0px;
+    border-radius:      0px;
+    border-color:       @transparent;
+    children:           [ inputbar, message, mode-switcher, listview ];
+    spacing:            0px;
+    padding:            0px;
+}
+
+/* ── Inputbar ───────────────────────────────────────────── */
+inputbar {
+    background-color:   @mantle;
+    border:             0px 0px 1px 0px;
+    border-color:       @border-col;
+    border-radius:      0px;
+    children:           [ prompt, entry ];
+    padding:            10px 14px;
+    spacing:            8px;
+}
+
+prompt {
+    background-color:   @transparent;
+    text-color:         @blue;
+    padding:            0px;
+    font:               "JetBrains Mono Bold 10";
+}
+
+entry {
+    background-color:   @transparent;
+    text-color:         @fg-col;
+    placeholder:        "Search...";
+    placeholder-color:  @overlay0;
+    cursor:             text;
+    padding:            0px;
+}
+
+/* ── Mode switcher ──────────────────────────────────────── */
+mode-switcher {
+    background-color:   @crust;
+    border:             0px 0px 1px 0px;
+    border-color:       @border-col;
+    padding:            6px 14px;
+    spacing:            4px;
+}
+
+button {
+    background-color:   @transparent;
+    text-color:         @overlay1;
+    padding:            3px 10px;
+    border-radius:      0px;
+    cursor:             pointer;
+    font:               "JetBrains Mono 9";
+}
+
+button selected {
+    background-color:   @surface0;
+    text-color:         @blue;
+    border:             0px 0px 2px 0px;
+    border-color:       @blue;
+}
+
+/* ── Listview ───────────────────────────────────────────── */
+listview {
+    background-color:   @transparent;
+    border:             0px;
+    padding:            8px 6px;
+    columns:            1;
+    lines:              8;
+    spacing:            2px;
+    dynamic:            true;
+    layout:             vertical;
+    reverse:            false;
+    fixed-height:       true;
+    fixed-columns:      true;
+    cursor:             "default";
+    scrollbar:          false;
+}
+
+/* ── List elements ──────────────────────────────────────── */
+element {
+    background-color:   @transparent;
+    border:             0px;
+    border-radius:      0px;
+    padding:            8px 10px;
+    spacing:            8px;
+    cursor:             pointer;
+}
+
+element normal.normal {
+    background-color:   @transparent;
+    text-color:         @fg-col;
+}
+
+element normal.urgent {
+    background-color:   @transparent;
+    text-color:         @urgent-col;
+}
+
+element normal.active {
+    background-color:   @transparent;
+    text-color:         @blue;
+}
+
+element selected.normal {
+    background-color:   @surface0;
+    text-color:         @text;
+    border:             0px 0px 0px 2px;
+    border-color:       @blue;
+}
+
+element selected.urgent {
+    background-color:   @surface0;
+    text-color:         @urgent-col;
+    border:             0px 0px 0px 2px;
+    border-color:       @urgent-col;
+}
+
+element selected.active {
+    background-color:   @surface0;
+    text-color:         @blue;
+    border:             0px 0px 0px 2px;
+    border-color:       @blue;
+}
+
+element alternate.normal {
+    background-color:   @transparent;
+    text-color:         @fg-col;
+}
+
+element-icon {
+    background-color:   @transparent;
+    size:               18px;
+    cursor:             inherit;
+}
+
+element-text {
+    background-color:   @transparent;
+    text-color:         inherit;
+    highlight:          bold #89b4fa;
+    cursor:             inherit;
+    vertical-align:     0.5;
+}
+
+/* ── Message ────────────────────────────────────────────── */
+message {
+    background-color:   @transparent;
+    border:             0px;
+    padding:            0px;
+}
+
+textbox {
+    background-color:   @surface0;
+    text-color:         @subtext0;
+    padding:            6px 14px;
+    font:               "JetBrains Mono 9";
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+scrollbar {
+    width:              4px;
+    border:             0px;
+    handle-color:       @surface2;
+    handle-width:       4px;
+    padding:            0px;
+    background-color:   @transparent;
+}

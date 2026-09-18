@@ -1,0 +1,188 @@
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  dunstrc — illogical-impulse style                         ║
+# ║  Theme  : Catppuccin Mocha                                 ║
+# ║  Font   : JetBrains Mono 10                                ║
+# ║  Style  : Square corners · layered urgency colors          ║
+# ║  Place  : ~/.config/dunst/dunstrc                          ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+[global]
+    # ── Display ───────────────────────────────────────────────
+    monitor              = 0
+    follow               = mouse
+
+    # ── Geometry ──────────────────────────────────────────────
+    width                = (240, 420)   # min–max width
+    height               = 200
+    origin               = top-right
+    offset               = 12x12
+    scale                = 0
+    notification_limit   = 5
+
+    # ── Progress bar ──────────────────────────────────────────
+    progress_bar                  = true
+    progress_bar_height           = 6
+    progress_bar_frame_width      = 0
+    progress_bar_min_width        = 150
+    progress_bar_max_width        = 380
+    progress_bar_corner_radius    = 0
+    progress_bar_corners          = all
+    icon_corner_radius            = 0
+    icon_corners                  = all
+
+    # ── Appearance — Square corners ───────────────────────────
+    corner_radius        = 0
+    corners              = all
+    frame_width          = 2
+    frame_color          = "#313244"    # surface0
+    gap_size             = 6
+    separator_height     = 1
+    separator_color      = frame
+    padding              = 10
+    horizontal_padding   = 14
+    text_icon_padding    = 10
+
+    # ── Font ──────────────────────────────────────────────────
+    font                 = JetBrains Mono 10
+
+    # ── Text ──────────────────────────────────────────────────
+    line_height          = 2
+    markup               = full
+    format               = "<b>%s</b>\n%b"
+    alignment            = left
+    vertical_alignment   = center
+    show_age_threshold   = 60
+    ellipsize            = middle
+    ignore_newline       = no
+    stack_duplicates     = true
+    hide_duplicate_count = false
+    show_indicators      = yes
+    word_wrap            = yes
+
+    # ── Icons ─────────────────────────────────────────────────
+    icon_theme           = Papirus-Dark
+    enable_recursive_icon_lookup = true
+    icon_position        = left
+    min_icon_size        = 0
+    max_icon_size        = 36
+
+    # ── History ───────────────────────────────────────────────
+    sticky_history       = yes
+    history_length       = 30
+
+    # ── Misc ──────────────────────────────────────────────────
+    always_run_script    = true
+    title                = Dunst
+    class                = Dunst
+    ignore_dbusclose     = false
+    force_xwayland       = false
+    force_xinerama       = false
+    sort                 = yes
+
+    # ── Mouse actions ─────────────────────────────────────────
+    mouse_left_click     = close_current
+    mouse_middle_click   = do_action, close_current
+    mouse_right_click    = close_all
+
+    # ── Keyboard ──────────────────────────────────────────────
+    # close             Ctrl+space
+    # close_all         Ctrl+Shift+space
+    # history           Ctrl+grave
+    # context           Ctrl+Shift+period
+
+# ══════════════════════════════════════════════════════════════
+# URGENCY LEVELS — Catppuccin Mocha
+# ══════════════════════════════════════════════════════════════
+
+[urgency_low]
+    background   = "#1e1e2e"    # base
+    foreground   = "#a6adc8"    # subtext0
+    frame_color  = "#313244"    # surface0
+    highlight    = "#89b4fa"    # blue  (progress bar)
+    timeout      = 4
+    default_icon = dialog-information
+
+[urgency_normal]
+    background   = "#1e1e2e"    # base
+    foreground   = "#cdd6f4"    # text
+    frame_color  = "#89b4fa"    # blue accent border
+    highlight    = "#89b4fa"    # blue
+    timeout      = 6
+    default_icon = dialog-information
+
+[urgency_critical]
+    background   = "#1e1e2e"    # base
+    foreground   = "#f38ba8"    # red
+    frame_color  = "#f38ba8"    # red accent border
+    highlight    = "#f38ba8"    # red
+    timeout      = 0            # never auto-dismiss
+    default_icon = dialog-error
+
+# ══════════════════════════════════════════════════════════════
+# APP-SPECIFIC RULES
+# ══════════════════════════════════════════════════════════════
+
+# Volume notifications (from pactl/dunstify scripts)
+[volume]
+    appname      = "volume"
+    summary      = "*"
+    set_stack_tag = "volume"
+    timeout      = 2
+
+# Brightness notifications
+[brightness]
+    appname      = "brightness"
+    summary      = "*"
+    set_stack_tag = "brightness"
+    timeout      = 2
+
+# Screenshot
+[screenshot]
+    appname      = "flameshot"
+    timeout      = 3
+    frame_color  = "#a6e3a1"    # green
+    highlight    = "#a6e3a1"
+
+# Music / playerctl
+[music]
+    appname      = "playerctl"
+    summary      = "*"
+    set_stack_tag = "music"
+    timeout      = 3
+    frame_color  = "#cba6f7"    # mauve
+
+# Spotify
+[spotify]
+    appname      = "Spotify"
+    set_stack_tag = "music"
+    timeout      = 4
+    frame_color  = "#a6e3a1"    # green
+
+# Low battery warning
+[battery_low]
+    appname      = "battery"
+    summary      = "*low*"
+    frame_color  = "#f9e2af"    # yellow
+    highlight    = "#f9e2af"
+    urgency      = normal
+    timeout      = 10
+
+# Critical battery
+[battery_critical]
+    appname      = "battery"
+    summary      = "*critical*"
+    frame_color  = "#f38ba8"    # red
+    highlight    = "#f38ba8"
+    urgency      = critical
+
+# Network manager
+[networkmanager]
+    appname      = "NetworkManager"
+    timeout      = 4
+    frame_color  = "#89b4fa"    # blue
+
+# Suppress noisy background apps
+[suppress_notify_send]
+    appname      = "notify-send"
+    summary      = "no-toast"
+    skip_display = true

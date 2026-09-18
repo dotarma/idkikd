@@ -1,0 +1,8 @@
+# ── volume ────────────────────────────────────────────────────────────────────
+bindsym super+F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle && dunstify -h string:x-dunst-stack-tag:osd -t 1500 "volume" "muted"
+bindsym super+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/scripts/osd.sh "volume" $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -1)
+bindsym super+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5% && ~/scripts/osd.sh "volume" $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -1)
+
+# ── brightness ────────────────────────────────────────────────────────────────
+bindsym super+F7 exec brightnessctl set 5%- && ~/scripts/osd.sh "brightness" $(($(brightnessctl get) * 100 / $(brightnessctl max)))
+bindsym super+F8 exec brightnessctl set 5%+ && ~/scripts/osd.sh "brightness" $(($(brightnessctl get) * 100 / $(brightnessctl max)))
